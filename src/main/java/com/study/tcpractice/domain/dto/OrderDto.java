@@ -1,6 +1,5 @@
 package com.study.tcpractice.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.study.tcpractice.domain.PriceUtil;
@@ -9,7 +8,6 @@ import com.study.tcpractice.domain.entity.Order;
 import com.study.tcpractice.domain.entity.User;
 import lombok.*;
 
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 @Getter
@@ -30,11 +28,12 @@ public class OrderDto {
     private String userName;
     private String itemName;
 
+    // 가격 출력 포맷 변경  ex) 100000 => 100,000원
     @JsonSerialize(using = PriceUtil.class)
     private Integer itemPrice;
     @JsonSerialize(using = PriceUtil.class)
-
     private Integer totalPrice;
+
     private LocalDateTime createdAt;
 
     public Order toEntity(User user, Item item) {

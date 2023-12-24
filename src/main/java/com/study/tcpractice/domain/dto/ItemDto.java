@@ -5,8 +5,6 @@ import com.study.tcpractice.domain.PriceUtil;
 import com.study.tcpractice.domain.entity.Item;
 import lombok.*;
 
-import java.text.DecimalFormat;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,6 +15,7 @@ public class ItemDto {
     private Long id;
     private String name;
 
+    // 가격 출력 포맷 변경  ex) 100000 => 100,000원
     @JsonSerialize(using = PriceUtil.class)
     private Integer price;
 
