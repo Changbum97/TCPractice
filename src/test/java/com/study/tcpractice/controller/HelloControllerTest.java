@@ -16,7 +16,7 @@ class HelloControllerTest {
     MockMvc mockMvc;
 
     @Test
-    @DisplayName("Health Check Test Success")
+    @DisplayName("Health Check Test")
     void healthCheckSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
                 .andDo(MockMvcResultHandlers.print())

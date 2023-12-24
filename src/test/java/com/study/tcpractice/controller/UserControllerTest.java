@@ -31,7 +31,7 @@ class UserControllerTest {
 
 
     @Test
-    @DisplayName("Add User Test Success")
+    @DisplayName("Add User Success Test")
     void addUserSuccess() throws Exception {
         // given
         // testModels/UserTestModel에 Mocking 해둔 객체 사용 (static import)
@@ -52,7 +52,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("Get User Test Success")
+    @DisplayName("Get User Success Test")
     void getUserSuccess() throws Exception {
         // when
         when(userService.findById(any())).thenReturn(userResponseWithOrders);
