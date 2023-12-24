@@ -2,13 +2,14 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.1'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'jacoco'
 }
 
 group = 'com.study'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '21'
+    sourceCompatibility = '18'
 }
 
 configurations {
@@ -32,4 +33,52 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+    // 테스트와 jacocoTestReport 플러그인의 연걸 -> 테스트 실행하면 jacocoTestReport도 같이 실행 됨.
+    finalizedBy 'jacocoTestReport'
+}
+
+jacoco {
+    toolVersion = "0.8.9"
+}
+
+// jacoco 결과를 어떤 형태의 보고서 받을 것인지 선택
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = true
+        html.required = true
+
+        xml.destination file("${buildDir}/jacoco/index.xml")
+        csv.destination file("${buildDir}/jacoco/index.csv")
+        html.destination file("${buildDir}/jacoco/index.html")
+    }
+
+    // TestReport 실행 시 TestCoverageVerification 같이 실행.
+    // 즉, test -> jacocoTestReport -> jacocoTestCoverageVerification 순서로 실행 됨.
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+// 테스트 코드 커버리지 기준 설정
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true      // 활성화 여부
+            element = 'CLASS'   // 클래스 단위로 커버리지 체크
+
+            limit {
+                counter = 'LINE'        // 라인 커버리지
+                value = 'COVEREDRATIO'  // 파악한 커버리지를 %로 보여줌
+                minimum = 0.90          // 90%
+            }
+
+            limit {
+                counter = 'BRANCH'      // 분기 커버리지
+                value = 'COVEREDRATIO'  // 파악한 커버리지를 %로 보여줌
+                minimum = 0.90          // 90%
+            }
+
+            // jacoco 적용을 제외할 클래스 -> 패키지 레벨의 경로 지정
+            // excludes = []
+        }
+    }
 }
