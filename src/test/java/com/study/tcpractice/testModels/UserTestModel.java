@@ -3,6 +3,7 @@ package com.study.tcpractice.testModels;
 import com.study.tcpractice.domain.PriceUtil;
 import com.study.tcpractice.domain.dto.UserDto;
 import com.study.tcpractice.domain.dto.UserResponse;
+import com.study.tcpractice.domain.entity.User;
 
 import static com.study.tcpractice.testModels.OrderTestModel.ORDER_DTOS;
 
@@ -22,5 +23,7 @@ public class UserTestModel {
                     .orders(ORDER_DTOS)
                     .totalPrice(USER_1_TOTAL_PRICE)
                     .build();
+
+    public static final User SAVED_USER_1 = User.builder().id(1L).name(USER_NAME_1).build();
 
 }
