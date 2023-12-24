@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static com.study.tcpractice.testModels.ItemTestModel.*;
 import static com.study.tcpractice.testModels.OrderTestModel.*;
-import static com.study.tcpractice.testModels.UserTestModel.userName1;
+import static com.study.tcpractice.testModels.UserTestModel.USER_NAME_1;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -51,19 +51,19 @@ class OrderControllerTest {
     void addOrderSuccess() throws Exception {
 
         // when
-        when(orderService.saveOrder(any())).thenReturn(orderResponse);
+        when(orderService.saveOrder(any())).thenReturn(ORDER_RESPONSE);
 
         // then
         mockMvc.perform(post("/orders")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsBytes(orderRequest))
+                        .content(objectMapper.writeValueAsBytes(ORDER_REQUEST))
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.userName").value(userName1))
-                .andExpect(jsonPath("$.itemName").value(itemName1))
-                .andExpect(jsonPath("$.totalPrice").value(5 * itemPrice1));
+                .andExpect(jsonPath("$.userName").value(USER_NAME_1))
+                .andExpect(jsonPath("$.itemName").value(ITEM_NAME_1))
+                .andExpect(jsonPath("$.totalPrice").value(5 * ITEM_PRICE_1));
     }
 
     @Test
@@ -98,16 +98,16 @@ class OrderControllerTest {
     @DisplayName("Find All Order Success Test")
     void findAllOrderSuccess() throws Exception {
         // when
-        when(orderService.findAll()).thenReturn(orderDtos);
+        when(orderService.findAll()).thenReturn(ORDER_DTOS);
 
         // then
         mockMvc.perform(get("/orders"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2))
-                .andExpect(jsonPath("$[0].itemName").value(itemName1))
-                .andExpect(jsonPath("$[0].totalPrice").value(5 * itemPrice1))
-                .andExpect(jsonPath("$[1].itemName").value(itemName2))
-                .andExpect(jsonPath("$[1].totalPrice").value(3 * itemPrice2));
+                .andExpect(jsonPath("$[0].itemName").value(ITEM_NAME_1))
+                .andExpect(jsonPath("$[0].totalPrice").value(5 * ITEM_PRICE_1))
+                .andExpect(jsonPath("$[1].itemName").value(ITEM_NAME_2))
+                .andExpect(jsonPath("$[1].totalPrice").value(3 * ITEM_PRICE_2));
     }
 }

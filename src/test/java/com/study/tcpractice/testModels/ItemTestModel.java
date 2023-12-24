@@ -6,15 +6,15 @@ import java.util.List;
 
 public class ItemTestModel {
 
-    public static final String itemName1 = "가방";
-    public static final Integer itemPrice1 = 100000;
+    public static final String ITEM_NAME_1 = "가방";
+    public static final Integer ITEM_PRICE_1 = 100000;
 
-    public static final String itemName2 = "신발";
-    public static final Integer itemPrice2 = 72000;
+    public static final String ITEM_NAME_2 = "신발";
+    public static final Integer ITEM_PRICE_2 = 72000;
 
-    public static final ItemDto itemRequest1 = ItemDto.builder().name(itemName1).price(itemPrice1).build();
-    public static final ItemDto itemResponse1 = ItemDto.builder().id(1L).name(itemName1).price(itemPrice1).build();
-    public static final ItemDto itemResponse2 = ItemDto.builder().id(2L).name(itemName2).price(itemPrice2).build();
+    public static final ItemDto ITEM_REQUEST_1 = ItemDto.builder().name(ITEM_NAME_1).price(ITEM_PRICE_1).build();
+    public static final ItemDto ITEM_RESPONSE_1 = ItemDto.builder().id(1L).name(ITEM_NAME_1).price(ITEM_PRICE_1).build();
+    public static final ItemDto ITEM_RESPONSE_2 = ItemDto.builder().id(2L).name(ITEM_NAME_2).price(ITEM_PRICE_2).build();
 
-    public static final List<ItemDto> itemDtos = List.of(itemResponse1, itemResponse2);
+    public static final List<ItemDto> ITEM_DTOS = List.of(ITEM_RESPONSE_1, ITEM_RESPONSE_2);
 }

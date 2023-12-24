@@ -49,18 +49,18 @@ class ItemControllerTest {
     void addItemSuccess() throws Exception {
 
         // when
-        when(itemService.saveItem(any())).thenReturn(itemResponse1);
+        when(itemService.saveItem(any())).thenReturn(ITEM_RESPONSE_1);
 
         // then
         mockMvc.perform(post("/items")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsBytes(itemRequest1))
+                        .content(objectMapper.writeValueAsBytes(ITEM_REQUEST_1))
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value(itemName1))
-                .andExpect(jsonPath("$.price").value(itemPrice1));
+                .andExpect(jsonPath("$.name").value(ITEM_NAME_1))
+                .andExpect(jsonPath("$.price").value(ITEM_PRICE_1));
     }
 
     @Test
@@ -68,18 +68,18 @@ class ItemControllerTest {
     void editItemSuccess() throws Exception {
 
         // when
-        when(itemService.editItem(any())).thenReturn(itemResponse1);
+        when(itemService.editItem(any())).thenReturn(ITEM_RESPONSE_1);
 
         // then
         mockMvc.perform(put("/items")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsBytes(itemRequest1))
+                        .content(objectMapper.writeValueAsBytes(ITEM_REQUEST_1))
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value(itemName1))
-                .andExpect(jsonPath("$.price").value(itemPrice1));
+                .andExpect(jsonPath("$.name").value(ITEM_NAME_1))
+                .andExpect(jsonPath("$.price").value(ITEM_PRICE_1));
     }
 
     @Test
@@ -114,14 +114,14 @@ class ItemControllerTest {
     @DisplayName("Find All Item Success Test")
     void findAllItemSuccess() throws Exception {
         // when
-        when(itemService.findAll()).thenReturn(itemDtos);
+        when(itemService.findAll()).thenReturn(ITEM_DTOS);
 
         // then
         mockMvc.perform(get("/items"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2))
-                .andExpect(jsonPath("$[0].name").value(itemName1))
-                .andExpect(jsonPath("$[1].name").value(itemName2));
+                .andExpect(jsonPath("$[0].name").value(ITEM_NAME_1))
+                .andExpect(jsonPath("$[1].name").value(ITEM_NAME_2));
     }
 }

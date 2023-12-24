@@ -38,32 +38,32 @@ class UserControllerTest {
         // userResponse1, userName1
 
         // when
-        when(userService.saveUser(any())).thenReturn(userResponse);
+        when(userService.saveUser(any())).thenReturn(USER_RESPONSE);
 
         // then
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsBytes(userRequest))
+                        .content(objectMapper.writeValueAsBytes(USER_REQUEST))
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value(userName1));
+                .andExpect(jsonPath("$.name").value(USER_NAME_1));
     }
 
     @Test
     @DisplayName("Get User Success Test")
     void getUserSuccess() throws Exception {
         // when
-        when(userService.findById(any())).thenReturn(userResponseWithOrders);
+        when(userService.findById(any())).thenReturn(USER_RESPONSE_WITH_ORDERS);
 
         // then
         mockMvc.perform(get("/users/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value(userName1))
-                .andExpect(jsonPath("$.totalPrice").value(user1FormattedTotalPrice))
+                .andExpect(jsonPath("$.name").value(USER_NAME_1))
+                .andExpect(jsonPath("$.totalPrice").value(USER_1_FORMATTED_TOTAL_PRICE))
                 .andExpect(jsonPath("$.orders.size()").value(2));
     }
 

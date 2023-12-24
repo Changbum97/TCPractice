@@ -6,42 +6,42 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.study.tcpractice.testModels.ItemTestModel.*;
-import static com.study.tcpractice.testModels.UserTestModel.userName1;
+import static com.study.tcpractice.testModels.UserTestModel.USER_NAME_1;
 
 public class OrderTestModel {
 
-    public static final LocalDateTime now = LocalDateTime.now();
+    public static final LocalDateTime NOW = LocalDateTime.now();
 
-    public static final OrderDto orderRequest = OrderDto.builder().userId(1L).itemId(1L).quantities(5).build();
-    public static final OrderDto orderResponse = OrderDto.builder()
-            .id(1L).createdAt(now)
-            .userId(1L).userName(userName1)
-            .itemId(1L).itemName(itemName1).itemPrice(itemPrice1)
-            .quantities(5).totalPrice(itemPrice1 * 5)
+    public static final OrderDto ORDER_REQUEST = OrderDto.builder().userId(1L).itemId(1L).quantities(5).build();
+    public static final OrderDto ORDER_RESPONSE = OrderDto.builder()
+            .id(1L).createdAt(NOW)
+            .userId(1L).userName(USER_NAME_1)
+            .itemId(1L).itemName(ITEM_NAME_1).itemPrice(ITEM_PRICE_1)
+            .quantities(5).totalPrice(ITEM_PRICE_1 * 5)
             .build();
 
-    public static final List<OrderDto> orderDtos = List.of(
+    public static final List<OrderDto> ORDER_DTOS = List.of(
             OrderDto.builder()
                     .id(1L)
                     .userId(1L)
-                    .userName(userName1)
+                    .userName(USER_NAME_1)
                     .itemId(1L)
-                    .itemName(itemName1)
-                    .itemPrice(itemPrice1)
+                    .itemName(ITEM_NAME_1)
+                    .itemPrice(ITEM_PRICE_1)
                     .quantities(5)
-                    .totalPrice(5 * itemPrice1)
-                    .createdAt(now)
+                    .totalPrice(5 * ITEM_PRICE_1)
+                    .createdAt(NOW)
                     .build(),
             OrderDto.builder()
                     .id(2L)
                     .userId(1L)
-                    .userName(userName1)
+                    .userName(USER_NAME_1)
                     .itemId(2L)
-                    .itemName(itemName2)
-                    .itemPrice(itemPrice2)
+                    .itemName(ITEM_NAME_2)
+                    .itemPrice(ITEM_PRICE_2)
                     .quantities(3)
-                    .totalPrice(3 * itemPrice2)
-                    .createdAt(now)
+                    .totalPrice(3 * ITEM_PRICE_2)
+                    .createdAt(NOW)
                     .build()
     );
 
