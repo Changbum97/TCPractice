@@ -14,4 +14,9 @@ public class PriceUtil extends JsonSerializer<Integer> {
         String formattedPrice = new DecimalFormat("###,###").format(price);
         jsonGenerator.writeString(formattedPrice + "원");
     }
+
+    public static String makeStringPrice(Integer price) {
+        String formattedPrice = new DecimalFormat("###,###").format(price);
+        return formattedPrice + "원";
+    }
 }
