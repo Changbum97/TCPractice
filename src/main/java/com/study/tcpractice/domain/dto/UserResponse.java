@@ -34,12 +34,20 @@ public class UserResponse {
     }
 
     private static List<OrderDto> buildOrders(List<Order> orders) {
+        if (orders == null || orders.isEmpty()) {
+            return null;
+        }
+
         return orders.stream()
                 .map(OrderDto::of)
                 .collect(Collectors.toList());
     }
 
     private static Integer calculateTotalPrice(List<Order> orders) {
+        if (orders == null || orders.isEmpty()) {
+            return null;
+        }
+
         int totalPrice = 0;
 
         for (Order order : orders) {

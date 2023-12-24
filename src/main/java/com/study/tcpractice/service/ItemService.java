@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,9 +40,13 @@ public class ItemService {
     }
 
     public List<ItemDto> findAll() {
-        return itemRepository.findAll()
-                .stream()
-                .map(ItemDto::of)
-                .collect(Collectors.toList());
+        try {
+            return itemRepository.findAll()
+                    .stream()
+                    .map(ItemDto::of)
+                    .collect(Collectors.toList());
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 }
