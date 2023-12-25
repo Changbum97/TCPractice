@@ -46,7 +46,7 @@ public class ItemService {
                     .map(ItemDto::of)
                     .collect(Collectors.toList());
         } catch (NullPointerException e) {
-            return null;
+            throw new NullPointerException("Item이 존재하지 않습니다.");
         }
     }
 }
