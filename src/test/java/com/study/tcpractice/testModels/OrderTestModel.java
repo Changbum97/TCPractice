@@ -1,11 +1,13 @@
 package com.study.tcpractice.testModels;
 
 import com.study.tcpractice.domain.dto.OrderDto;
+import com.study.tcpractice.domain.entity.Order;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.study.tcpractice.testModels.ItemTestModel.*;
+import static com.study.tcpractice.testModels.UserTestModel.SAVED_USER_1;
 import static com.study.tcpractice.testModels.UserTestModel.USER_NAME_1;
 
 public class OrderTestModel {
@@ -45,4 +47,19 @@ public class OrderTestModel {
                     .build()
     );
 
+    public static final Order SAVED_ORDER_1 = Order.builder()
+            .id(1L)
+            .user(SAVED_USER_1)
+            .item(SAVED_ITEM_1)
+            .quantities(5)
+            .createdAt(NOW)
+            .build();
+
+    public static final Order SAVED_ORDER_2 = Order.builder()
+            .id(2L)
+            .user(SAVED_USER_1)
+            .item(SAVED_ITEM_2)
+            .quantities(3)
+            .createdAt(NOW)
+            .build();
 }
